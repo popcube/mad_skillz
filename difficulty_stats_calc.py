@@ -1,4 +1,5 @@
 import datetime
+import os, sys
 from matplotlib import pyplot as plt
 
 def get_data(idx, keyword):
@@ -21,11 +22,11 @@ def read_time(s):
 plt.rcParams["font.family"] = "sans-serif"
 plt.rcParams["font.sans-serif"] = ["Meiryo"]
 
-fname = "楽曲一覧_20220406_ANSI.csv"
+fname = "20220514_data.csv"
 data = []
 csv_key_data = ["No", "default index", "type", "name", "unit", "E", "N", "H", "EX", "M", "EX notes", "M notes", "time", "BPM", "MV", "MV personnel", "release date"]
 
-with open(fname, "r") as f:
+with open(fname, "r", encoding='utf-8') as f:
     data_temp = f.readlines()
     
     for i, line in enumerate(data_temp):
@@ -39,27 +40,35 @@ with open(fname, "r") as f:
 key_data_max = max([line["M"] for line in data])
 print("key_data_max", key_data_max)
 
-## song difficulty key list 22-34
+## song difficulty key list 21-34
 ## for master, 26-34
 key_data = [str(i) for i in range(26, 36 + 1)]
 
+## sort data from newest to oldest
+data.sort(key=lambda x: read_time(x["release date"]), reverse=True)
+
 ## アップデート v1.12.0時は2021/12/24
 ## 最初から読みたい場合はずっと昔の日時を指定する
-oldest_time = read_time("2022/4/1")
+if len(sys.argv) == 2:
+  oldest_time = read_time(sys.argv[1])
+else:
+  print("only one parameter (date) must be provided")
+  sys.exit(1)
+
 time_str_list = [d["release date"] for d in data]
+
+## get the dating-back timetable list value at zero index or oldest_time
 oldest_time = next((read_time(s) for s in time_str_list if read_time(s) < oldest_time), oldest_time)
 print("oldest time: " + oldest_time.strftime("%Y%m%d"))
 
-## set it to 169 to generate only 1 image
 data_offset_idx = 0
 
 # グラフの縦軸の最大値は使いまわす
 ytick_max = 0
 
-## sort data from oldest to newest
-data.sort(key=lambda x: read_time(x["release date"]), reverse=True)
+os.makedirs("./figs", exist_ok=True)
 
-while read_time(data[data_offset_idx]["release date"]) > oldest_time:
+while read_time(data[data_offset_idx]["release date"]) >= oldest_time and data_offset_idx < len(data):
 
     Exp_data = {}
     Mas_data = {}

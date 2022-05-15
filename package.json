@@ -1,0 +1,31 @@
+{
+  "name": "mad_skillz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/popcube/mad_skillz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/popcube/mad_skillz/issues"
+  },
+  "homepage": "https://github.com/popcube/mad_skillz#readme",
+  "dependencies": {
+    "jsdom": "^19.0.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.29.4",
+    "prettier": "^2.6.2"
+  }
+}
