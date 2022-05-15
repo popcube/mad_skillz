@@ -23,6 +23,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          token: ${{ secret.MY_TOKEN }}
 
       - name: Download csv
         uses: actions/download-artifact@v3
@@ -32,10 +34,12 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v3
 
-      - name: pip install
+      - name: Other setups
         run: |
           pip install matplotlib
           pip install pillow
+          git config --global user.name "popcube bot"
+          git config --global user.email "hsdfjs@yahoo.co.jp"
 
       - name: get fig on TODAY
         run: python difficulty_stats_calc.py `date +%Y/%m/%d`
