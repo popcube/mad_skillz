@@ -21,6 +21,9 @@ jobs:
     needs: job1
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
       - name: Download csv data
         uses: actions/download-artifact@v3
         with:
@@ -35,6 +38,6 @@ jobs:
           pip install pillow
       
       - name: get fig on TODAY
-        run: python ${{ github.workspace }}/difficulty_stats_calc.py `date +%Y/%m/%d`
+        run: python difficulty_stats_calc.py `date +%Y/%m/%d`
       
       - run: ls -l
