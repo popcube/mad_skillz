@@ -31,8 +31,8 @@ jobs:
       
       - name: pip install
         run: |
-          pip i matplotlib
-          pip i pillow
+          pip install matplotlib
+          pip install pillow
       
       - name: get fig on TODAY
         run: py difficulty_stats_calc.py `date +%Y/%m/%d`
