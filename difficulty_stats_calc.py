@@ -189,8 +189,12 @@ while read_time(data[data_offset_idx]["release date"]) >= oldest_time and data_o
         fontname="Meiryo",
         backgroundcolor="#FFFF66",
         ha="right", va="top")
+
+    figpath = "./figs/" + date_text.replace("/","_") + ".png"
+    if os.path.exists(figpath):
+        os.remove(figpath)
     
-    plt.savefig("./figs/" + date_text.replace("/","_") + ".png")
+    plt.savefig(figpath)
     plt.close()
     
     ## 次の日付へ　必ずループ内最後に行うこと
