@@ -11,7 +11,7 @@ jobs:
       - run: ls -l
       
       - name: Wiki scrape
-        run: npm start
+        run: node index.js
         
       - run: |
           ls -l
