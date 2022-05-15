@@ -6,13 +6,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      
-      - run: ls -l
+        uses: actions/checkout@v3
       
       - name: Wiki scrape
         run: node index.js
-        
-      - run: |
-          ls -l
-          cat 20220514_data.csv
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v3
+      
+      - name: pip install
+        run: |
+          pip matplotlib
+          pip pillow
+      
+      - name: get fig on TODAY
+        run: py difficulty_stats_calc.py `date +%Y/%m/%d`
+      
+      - run: ls -l
