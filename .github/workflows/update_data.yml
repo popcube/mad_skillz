@@ -10,18 +10,29 @@ jobs:
       
       - name: Wiki scrape
         run: node index.js
+        
+      - name: Upload csv data
+        uses: actions/upload-artifact@v3
+        with:
+          name: songlist
+          path: 20220514_data.csv
 
   job2:
     needs: job1
     runs-on: ubuntu-latest
     steps:
+      - name: Download csv data
+        uses: actions/download-artifact@v3
+        with:
+          name: songlist
+
       - name: Setup Python
         uses: actions/setup-python@v3
       
       - name: pip install
         run: |
-          pip matplotlib
-          pip pillow
+          pip i matplotlib
+          pip i pillow
       
       - name: get fig on TODAY
         run: py difficulty_stats_calc.py `date +%Y/%m/%d`
