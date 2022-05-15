@@ -24,7 +24,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          token: ${{ secret.MY_TOKEN }}
+          token: ${{ secrets.MY_TOKEN }}
 
       - name: Download csv
         uses: actions/download-artifact@v3
