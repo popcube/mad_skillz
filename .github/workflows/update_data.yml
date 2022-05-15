@@ -38,6 +38,8 @@ jobs:
         run: |
           pip install matplotlib
           pip install pillow
+          sudo apt install msttcorefonts -qq
+          rm ~/.cache/matplotlib -rf
           git config --global user.name "popcube bot"
           git config --global user.email "hsdfjs@yahoo.co.jp"
 
