@@ -7,11 +7,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+
       - name: Wiki scrape
         run: node index.js
-        
-      - name: Upload csv data
+
+      - name: Upload csv
         uses: actions/upload-artifact@v3
         with:
           name: songlist
@@ -23,21 +23,31 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        
-      - name: Download csv data
+
+      - name: Download csv
         uses: actions/download-artifact@v3
         with:
           name: songlist
 
       - name: Setup Python
         uses: actions/setup-python@v3
-      
+
       - name: pip install
         run: |
           pip install matplotlib
           pip install pillow
-      
+
       - name: get fig on TODAY
         run: python difficulty_stats_calc.py `date +%Y/%m/%d`
-      
-      - run: ls -l
+
+      - name: Upload png(s)
+        uses: actions/upload-artifact@v3
+        with:
+          name: madskillz_req
+          path: figs
+
+      - name: Push figs folder
+        run: |
+          git add figs
+          git commit -m "auto commit figs folder"
+          git push
