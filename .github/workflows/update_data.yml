@@ -50,8 +50,14 @@ jobs:
           name: madskillz_req
           path: figs
 
-      - name: Push figs folder
+      - name: Push figs folder (if needed)
         run: |
+          git diff --exit-code ./figs/. > /dev/null 2>&1
+          if [ $? -eq 0 ]; then
+          echo "nothing changed"
+          exit 0
+          fi
+      
           git add ./figs/.
           git commit -m "auto commit figs folder"
           git push
