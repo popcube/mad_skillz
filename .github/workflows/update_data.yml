@@ -54,24 +54,10 @@ jobs:
 
       - name: Push figs folder (if needed)
         run: |
-          git add ./figs/.
-          
-      - if: false
-        run: |
-          git diff --exit-code HEAD ./figs/. > /dev/null 2>&1
-      - run: |
-          if [[ $(git diff --exit-code HEAD ./figs/.) -eq 0 ]]; then
-          echo "nothing changed"
-          git reset
-          exit 0
-          fi
-      - run: |
-          echo "here?"
-          git diff HEADS ./figs/.
-          ls -la ./figs
-      - run: |
-          git commit -m "auto commit figs folder"
-          git push
+          git add ./figs/. \
+          && git diff --exit-code ./figs/. HEAD \
+          || git commit -m "auto commit figs folder" \
+          && git push
           
   job3:
     name: create html
@@ -90,14 +76,8 @@ jobs:
       - name: Push docs (if needed)
         run: |
           git add ./docs/.
-          git diff --exit-code HEAD ./docs/. > /dev/null 2>&1
-          if [ $? -eq 0 ]; then
-          echo "nothing changed"
-          git reset
-          exit 0
-          fi
-  
-          git commit -m "auto commit docs folder"
-          git push
+          && git diff --exit-code ./docs/. HEAD \
+          || git commit -m "auto commit docs folder" \
+          && git push
           
       
