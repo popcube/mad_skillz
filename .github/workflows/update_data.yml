@@ -56,10 +56,11 @@ jobs:
         run: |
           git add ./figs/.
           
-      - run: |
+      - if: false
+        run: |
           git diff --exit-code HEAD ./figs/. > /dev/null 2>&1
       - run: |
-          if [ $? -eq 0 ]; then
+          if [[ $(git diff --exit-code HEAD ./figs/.) -eq 0 ]]; then
           echo "nothing changed"
           git reset
           exit 0
