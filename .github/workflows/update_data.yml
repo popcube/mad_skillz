@@ -55,9 +55,9 @@ jobs:
       - name: Push figs folder (if needed)
         run: |
           git add ./figs/. \
-          && git diff --exit-code ./figs/. \
-          || git commit -m "auto commit figs folder" \
-          && git push
+          && git diff --exit-code --staged --merge-base \
+          || (git commit -m "auto commit figs folder" \
+          && git push)
           
   job3:
     name: create html
@@ -76,8 +76,8 @@ jobs:
       - name: Push docs (if needed)
         run: |
           git add ./docs/. \
-          && git diff --exit-code ./docs/. \
-          || git commit -m "auto commit docs folder" \
-          && git push
+          && git diff --exit-code --staged --merge-base \
+          || (git commit -m "auto commit docs folder" \
+          && git push)
           
       
