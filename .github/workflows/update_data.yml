@@ -50,11 +50,11 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: madskillz_req
-          path: figs
+          path: ./docs/figs
 
       - name: Push figs folder (if needed)
         run: |
-          git add ./figs/. \
+          git add ./docs/figs/. \
           && git diff --exit-code --staged --merge-base \
           || (git commit -m "auto commit figs folder" \
           && git push)
