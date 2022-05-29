@@ -3,6 +3,7 @@ on: workflow_dispatch
 
 jobs:
   job1:
+    name: web scraping
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,6 +19,7 @@ jobs:
           path: 20220514_data.csv
 
   job2:
+    name: create image
     needs: job1
     runs-on: ubuntu-latest
     steps:
@@ -61,3 +63,31 @@ jobs:
           git add ./figs/.
           git commit -m "auto commit figs folder"
           git push
+          
+  job3:
+    name: create html
+    needs: job2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.MY_TOKEN }}
+      
+      - name: Create html
+        run: |
+          npm run make_js
+      
+      - name: Push docs (if needed)
+        run: |
+          git diff --exit-code ./docs/. > /dev/null 2>&1
+          if [ $? -eq 0 ]; then
+          echo "nothing changed"
+          exit 0
+          fi
+      
+          git add ./figs/.
+          git commit -m "auto commit figs folder"
+          git push
+          
+      
