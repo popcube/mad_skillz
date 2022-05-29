@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node main",
-    "make_js": "node make_js.js"
+    "make_js": "node js/make_js.js"
   },
   "repository": {
     "type": "git",

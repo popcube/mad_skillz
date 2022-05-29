@@ -4,9 +4,10 @@ const { JSDOM } = require('jsdom');
 
 async function main() {
     const figDir = "figs";
-    const resHtml = "docs/index.html";
+    const templateHtml = "docs/template.html";
+    const resultHtml = "docs/index.html";
 
-    const DOM = await JSDOM.fromFile(resHtml);
+    const DOM = await JSDOM.fromFile(templateHtml);
     const { document } = DOM.window;
     const parentDiv = document.getElementById("main_images");
 
@@ -27,7 +28,7 @@ async function main() {
     })
 
     console.log(document.documentElement.outerHTML);
-    fs.writeFileSync("./docs/index2.html", document.documentElement.outerHTML);
+    fs.writeFileSync(resultHtml, document.documentElement.outerHTML);
 
 }
 
