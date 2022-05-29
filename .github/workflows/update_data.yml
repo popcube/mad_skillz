@@ -40,7 +40,7 @@ jobs:
         run: |
           pip install matplotlib
           pip install pillow
-          git config --global user.name "popcube bot"
+          git config --global user.name "popcube"
           git config --global user.email "hsdfjs@yahoo.co.jp"
 
       - name: get fig on TODAY
@@ -61,6 +61,10 @@ jobs:
           git reset
           exit 0
           fi
+          
+          echo "here?"
+          git diff HEADS ./figs/.
+          ls -la ./figs
 
           git commit -m "auto commit figs folder"
           git push
