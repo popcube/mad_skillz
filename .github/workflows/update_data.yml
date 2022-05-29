@@ -68,6 +68,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.MY_TOKEN }}
+          
+      - name: Other setups
+        run: |
+          git config --global user.name "popcube"
+          git config --global user.email "hsdfjs@yahoo.co.jp"
       
       - name: Create html
         run: |
