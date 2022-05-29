@@ -22,7 +22,7 @@ async function main() {
 
     fileNames.forEach(fileName => {
         let resImg = document.createElement("img")
-        resImg.src = `../${figDir}/${fileName}`;
+        resImg.src = `${figDir.split("/")[1]}/${fileName}`;
         resImg.alt = fileName;
         parentDiv.appendChild(resImg);
     })
