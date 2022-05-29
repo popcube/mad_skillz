@@ -55,7 +55,7 @@ jobs:
       - name: Push figs folder (if needed)
         run: |
           git add ./figs/. \
-          && git diff --exit-code ./figs/. HEAD \
+          && git diff --exit-code ./figs/. \
           || git commit -m "auto commit figs folder" \
           && git push
           
@@ -76,7 +76,7 @@ jobs:
       - name: Push docs (if needed)
         run: |
           git add ./docs/. \
-          && git diff --exit-code ./docs/. HEAD \
+          && git diff --exit-code ./docs/. \
           || git commit -m "auto commit docs folder" \
           && git push
           
