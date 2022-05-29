@@ -23,6 +23,7 @@ def read_time(s):
 # plt.rcParams["font.sans-serif"] = ["Meiryo"]
 
 fname = "20220514_data.csv"
+figfoler = "./docs/figs"
 data = []
 csv_key_data = ["No", "default index", "type", "name", "unit", "E", "N", "H", "EX", "M", "EX notes", "M notes", "time", "BPM", "MV", "MV personnel", "release date"]
 
@@ -52,7 +53,7 @@ data.sort(key=lambda x: read_time(x["release date"]), reverse=True)
 if len(sys.argv) == 2:
   oldest_time = read_time(sys.argv[1])
 else:
-  print("only one parameter (date) must be provided")
+  print("only one parameter (YYYY/mm/dd) must be provided")
   sys.exit(1)
 
 time_str_list = [d["release date"] for d in data]
@@ -66,7 +67,7 @@ data_offset_idx = 0
 # グラフの縦軸の最大値は使いまわす
 ytick_max = 0
 
-os.makedirs("./figs", exist_ok=True)
+os.makedirs(figfoler, exist_ok=True)
 
 while read_time(data[data_offset_idx]["release date"]) >= oldest_time and data_offset_idx < len(data):
 
@@ -190,7 +191,7 @@ while read_time(data[data_offset_idx]["release date"]) >= oldest_time and data_o
         backgroundcolor="#FFFF66",
         ha="right", va="top")
 
-    figpath = "./figs/" + date_text.replace("/","_") + ".png"
+    figpath = figfoler + "/" + date_text.replace("/","_") + ".png"
     if os.path.exists(figpath):
         os.remove(figpath)
     
