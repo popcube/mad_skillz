@@ -40,8 +40,8 @@ jobs:
         run: |
           pip install matplotlib
           pip install pillow
-          git config --global user.name "popcube"
-          git config --global user.email "hsdfjs@yahoo.co.jp"
+          git config --global user.name ${{ github.actor }}
+          git config --global user.email ${{ secrets.MY_EMAIL }}
 
       - name: get fig on TODAY
         run: python difficulty_stats_calc.py `date +%Y/%m/%d`
@@ -71,8 +71,8 @@ jobs:
           
       - name: Other setups
         run: |
-          git config --global user.name "popcube"
-          git config --global user.email "hsdfjs@yahoo.co.jp"
+          git config --global user.name ${{ github.actor }}
+          git config --global user.email ${{ secrets.MY_EMAIL }}
       
       - name: Create html
         run: |
