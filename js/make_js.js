@@ -3,7 +3,7 @@ const fs = require('fs');
 const { JSDOM } = require('jsdom');
 
 async function main() {
-    const figDir = "figs";
+    const figDir = "docs/figs";
     const templateHtml = "docs/template.html";
     const resultHtml = "docs/index.html";
 
