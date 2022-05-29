@@ -178,7 +178,7 @@ while read_time(data[data_offset_idx]["release date"]) >= oldest_time and data_o
                           label="mad skill level")
 
     plt.subplots_adjust(left=0.2, bottom=0.35)
-    plt.title("皆伝称号に必要な楽曲レベルと曲数", y=-0.5, fontname="Meiryo")
+    plt.title("皆伝称号に必要な楽曲レベルと曲数", y=-0.5, fontname="IPAexGothic")
     # plt.title("mad skill required song number and levels", y=-0.5)
 
     plt.gcf().text(0.05, 0.9,
@@ -187,7 +187,7 @@ while read_time(data[data_offset_idx]["release date"]) >= oldest_time and data_o
     
     plt.gcf().text(0.95, 0.95,
         f"latest song\n{song_text}",
-        fontname="Meiryo",
+        fontname="IPAexGothic",
         backgroundcolor="#FFFF66",
         ha="right", va="top")
 
