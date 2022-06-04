@@ -76,6 +76,7 @@ jobs:
           
       - name: Other setups
         run: |
+          ls -la ./docs/figs/.
           git config --global user.name ${{ github.actor }}
           git config --global user.email ${{ secrets.MY_EMAIL }}
       
