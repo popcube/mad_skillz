@@ -36,7 +36,7 @@ request("https://pjsekai.com/?aad6ee23b0", (e, res, body) => {
     songList.push(songListRow);
   }
 
-  console.log(...songList[0]);
+  console.log(...songList[songList.length - 1]);
 
   //   songList.splice(3);
   const resString = songList.reduce((acc, cur) => {
