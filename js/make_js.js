@@ -17,8 +17,8 @@ async function main() {
     textHeaderDiv.append("コンテンツ一覧");
     parentDiv.appendChild(textHeaderDiv);
 
-    //create img list
-    const fileNames = fs.readdirSync(figDir);
+    //create img list in latest to oldest order
+    const fileNames = fs.readdirSync(figDir).sort().reverse();
 
     fileNames.forEach(fileName => {
         let resImg = document.createElement("img")
