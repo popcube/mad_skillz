@@ -57,7 +57,9 @@ jobs:
           name: madskillz_req
           path: ./docs/figs
 
+#     this git push tends to be time-consuming and affects checkout in next job
       - name: Push figs folder (if needed)
+        if: false
         run: |
           git add ./docs/figs/. \
           && git diff --exit-code --staged --merge-base \
@@ -73,10 +75,16 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.MY_TOKEN }}
+      
+      - name: Download figs
+        uses: actions/download-artifact@v3
+        with:
+          name: madskillz_req
+          path: ./docs/figs
           
       - name: Other setups
         run: |
-          ls -la ./docs/figs/.
+          ls -la ./docs/figs
           git config --global user.name ${{ github.actor }}
           git config --global user.email ${{ secrets.MY_EMAIL }}
       
