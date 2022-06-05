@@ -1,3 +1,7 @@
+#################################
+## parameter format YYYY/MM/DD ##
+#################################
+
 import datetime
 import os, sys
 from matplotlib import pyplot as plt
@@ -70,6 +74,9 @@ ytick_max = 0
 os.makedirs(figfoler, exist_ok=True)
 
 while read_time(data[data_offset_idx]["release date"]) >= oldest_time and data_offset_idx < len(data):
+    if read_time(data[data_offset_idx + 1]["release date"]) >= oldest_time:
+        data_offset_idx += 1
+        continue
 
     Exp_data = {}
     Mas_data = {}
