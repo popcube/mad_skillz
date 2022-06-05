@@ -52,12 +52,12 @@ jobs:
         run: |
           python difficulty_stats_calc.py `date +%Y/%m/01`
           
-          if [[ $(ls ./docs/figs/latest | find *.png | wc -w) -ne 1 ]]; then
+          if [[ $(ls ./docs/figs/latest/. | find *.png | wc -w) -ne 1 ]]; then
           echo "only one latest file is allowed"
           exit 1
           fi
           
-          if [[ ! $(ls ./docs/figs/latest -type f) =~ $(ls ./docs/figs/latest | find *.png) ]]; then
+          if [[ ! $(ls ./docs/figs/. -type f) =~ $(ls ./docs/figs/latest/. | find *.png) ]]; then
           mv ./docs/figs/latest/* ./docs/figs/
           fi
           
