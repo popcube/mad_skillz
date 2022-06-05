@@ -52,7 +52,7 @@ jobs:
         run: |
           python difficulty_stats_calc.py `date +%Y/%m/01`
           
-          ls ./docs/figs/latest/.
+          find ./docs/figs/latest \*.png
           echo
           echo
           ls ./docs/figs/latest
