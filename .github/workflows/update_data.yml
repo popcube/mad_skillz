@@ -52,6 +52,13 @@ jobs:
         run: |
           python difficulty_stats_calc.py `date +%Y/%m/01`
           
+          ls ./docs/figs/latest/.
+          echo
+          echo
+          ls ./docs/figs/latest
+          echo
+          echo
+          
           if [[ $(ls ./docs/figs/latest/. | find *.png | wc -w) -ne 1 ]]; then
           echo "only one latest file is allowed"
           exit 1
