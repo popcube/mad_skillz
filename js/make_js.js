@@ -4,6 +4,7 @@ const { JSDOM } = require('jsdom');
 
 async function main() {
     const figDir = "docs/figs";
+    const latestFigDir = `${figDir}/latest`;
     const templateHtml = "docs/template.html";
     const resultHtml = "docs/index.html";
 
@@ -17,14 +18,26 @@ async function main() {
     textHeaderDiv.append("コンテンツ一覧");
     parentDiv.appendChild(textHeaderDiv);
 
+    const latestFileName = fs.readdirSync(latestFigDir)[0];
+    let resLatestImg = document.createElement("img");
+    resLatestImg.src = `figs/latest/${latestFileName}`;
+    resLatestImg.alt = latestFileName;
+    parentDiv.appendChild(document.createElement("div").appendChild(resLatestImg));
+
     //create img list in latest to oldest order
-    const fileNames = fs.readdirSync(figDir).sort().reverse();
+    const fileNames = fs.readdirSync(figDir, {withFileTypes: true})
+        .filter(d => !d.isDirectory())
+        .map(d => d.name)
+        .sort()
+        .reverse();
 
     fileNames.forEach(fileName => {
+        let resDiv = document.createElement("div")
         let resImg = document.createElement("img")
-        resImg.src = `${figDir.split("/")[1]}/${fileName}`;
+        resImg.src = `figs/${fileName}`;
         resImg.alt = fileName;
-        parentDiv.appendChild(resImg);
+        resDiv.appendChild(resImg);
+        parentDiv.appendChild(resDiv);
     })
 
     console.log(document.documentElement.outerHTML);
