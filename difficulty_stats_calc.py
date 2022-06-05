@@ -8,6 +8,8 @@ from matplotlib import pyplot as plt
 
 def get_data(idx, keyword):
     global data
+    global key_data
+
     Res_data = {}
     for key in key_data:
         Res_data[key] = 0
@@ -69,12 +71,13 @@ print("oldest time: " + oldest_time.strftime("%Y%m%d"))
 data_offset_idx = 0
 
 # グラフの縦軸の最大値は使いまわす
-ytick_max = 0
+ytick_max = max(get_data(0, "M").values())
 
 os.makedirs(figfoler, exist_ok=True)
 
 while read_time(data[data_offset_idx]["release date"]) >= oldest_time and data_offset_idx < len(data):
-    if read_time(data[data_offset_idx + 1]["release date"]) >= oldest_time:
+    # kill while loop: remove to make while loop function
+    if read_time(data[data_offset_idx + 1]["release date"]) >= oldest_time and data_offset_idx + 1 < len(data):
         data_offset_idx += 1
         continue
 
@@ -100,10 +103,6 @@ while read_time(data[data_offset_idx]["release date"]) >= oldest_time and data_o
 
     ## テーブル用データ
     mad_skillz_stats = [["", ""] for i in range(10)]
-    
-    ## y軸最大値
-    if data_offset_idx == 0:
-        ytick_max = max(Mas_data.values())
 
     ## 今の場所を指すポインタ　[楽曲レベル、曲数]
     temp_diff_pos = [0, 0]
