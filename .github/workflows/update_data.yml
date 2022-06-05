@@ -52,19 +52,13 @@ jobs:
         run: |
           python difficulty_stats_calc.py `date +%Y/%m/01`
           
-          find ./docs/figs/latest \*.png
-          echo
-          echo
-          ls ./docs/figs/latest
-          echo
-          echo \
-          
-          if [[ $(find ./docs/figs/latest \*.png | wc -w) -ne 1 ]]; then
+          if [[ $(find ./docs/figs/latest -name "*.png" | wc -l) -ne 1 ]]; then
           echo "only one latest file is allowed"
           exit 1
           fi
           
-          if [[ ! $(find ./docs/figs \*.png -type f) =~ $(find ./docs/figs/latest \*.png) ]]; then
+          if [[ ! $(find ./docs/figs -name "*.png" -type f -exec basename "{}" ";") \
+          =~ $(find ./docs/figs/latest -name "*.png" -exec basename "{}" ";") ]]; then
           mv ./docs/figs/latest/* ./docs/figs/
           fi
           
