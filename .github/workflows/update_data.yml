@@ -51,7 +51,8 @@ jobs:
 
       - name: "##### main run #####"
         run: |
-          python difficulty_stats_calc.py `date +%Y/%m/01`
+          echo "script run for "$(TZ=-9 date +%Y/%m/01)
+          python difficulty_stats_calc.py $(TZ=-9 date +%Y/%m/01)
           
           if [[ $(find ./docs/figs/latest -name "*.png" | wc -l) -ne 1 ]]; then
           echo "only one latest file is allowed"
@@ -68,7 +69,9 @@ jobs:
           fi
           
           rm -f /docs/figs/latest/*
-          python difficulty_stats_calc.py `date +%Y/%m/%d`
+          
+          echo "script run for "$(TZ=-9 date +%Y/%m/%d)
+          python difficulty_stats_calc.py $(TZ=-9 date +%Y/%m/%d)
           
 
       - name: Upload png(s)
