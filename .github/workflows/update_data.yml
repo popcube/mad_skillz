@@ -51,15 +51,11 @@ jobs:
 
       - name: "##### main run #####"
         run: |
+          rm -f ./docs/figs/latest/*
           echo "script run for "$(TZ=-9 date +%Y/%m/01)
           python difficulty_stats_calc.py $(TZ=-9 date +%Y/%m/01)
           echo
           echo
-          
-          if [[ $(find ./docs/figs/latest -name "*.png" | wc -l) -ne 1 ]]; then
-          echo "only one latest file is allowed"
-          exit 1
-          fi
           
           echo "docs/figs folder: $(find ./docs/figs -maxdepth 1 -name "*.png" -type f -exec basename "{}" ";")"
           echo "docs/figs/latest folder: $(find ./docs/figs/latest -name "*.png" -exec basename "{}" ";")"
