@@ -6,6 +6,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          fc-list
-          fc-list | grep IPAexGothic
-          fc-list | grep Meiryo
+          echo "TZ-9: "$(TZ=-9 date +%Y/%m/%d)
+          echo "TZ-0: "$(date +%Y/%m/%d)
