@@ -7,4 +7,6 @@ jobs:
     steps:
       - run: |
           echo 'TZ-9: '$(TZ=JST-9 date +"%Y/%m/%d %H%M%S")
+          echo 'TZ-9: '$(TZ=JST-18 date +"%Y/%m/%d %H%M%S")
+          echo 'TZ-9: '$(TZ=JST date +"%Y/%m/%d %H%M%S")
           echo 'TZ-0: '$(date +"%Y/%m/%d %H%M%S")
