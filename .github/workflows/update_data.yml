@@ -101,11 +101,12 @@ jobs:
           
       - name: Other setups
         run: |
-          ls -la ./docs/figs
+          ls -Rla ./docs/figs
           git config --global user.name ${{ github.actor }}
           git config --global user.email ${{ secrets.MY_EMAIL }}
           
-          rm -f ./docs/figs/latest/*
+          find ./docs/figs/latest/ type -f -delete
+          ls -Rla ./docs/figs
           
       - name: Download figs
         uses: actions/download-artifact@v3
