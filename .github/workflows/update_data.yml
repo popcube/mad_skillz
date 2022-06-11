@@ -52,7 +52,7 @@ jobs:
       - name: "##### main run #####"
         run: |
           rm -f ./docs/figs/latest/*
-          echo "script run for "$(TZ=-9 date +%Y/%m/01)
+          echo "script run for $(TZ=-9 date +"%Y/%m/01")"
           python difficulty_stats_calc.py $(TZ=-9 date +%Y/%m/01)
           echo
           echo
@@ -70,8 +70,8 @@ jobs:
           
           rm -f ./docs/figs/latest/*
           
-          echo "script run for "$(TZ=-9 date +%Y/%m/%d)
-          python difficulty_stats_calc.py $(TZ=-9 date +%Y/%m/%d)
+          echo "script run for $(TZ=JST-9 date +"%Y/%m/%d %H:%M:%S")"
+          python difficulty_stats_calc.py $(TZ=JST-9 date +%Y/%m/%d)
           
 
       - name: Upload png(s)
