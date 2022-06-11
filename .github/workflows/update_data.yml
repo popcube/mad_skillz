@@ -125,9 +125,9 @@ jobs:
       
       - name: Push docs (if needed)
         run: |
-          git add ./docs/. -N \
+          git add ./docs/. -AN \
           && git diff --exit-code \
-          || (git add -AN ./docs/. \
+          || (git add -A ./docs/. \
           && git commit -m "auto commit docs folder" \
           && git push)
           
