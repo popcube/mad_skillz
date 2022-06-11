@@ -8,3 +8,5 @@ jobs:
       - run: |
           echo 'TZ-9: '$(TZ=-9 date +"%Y/%m/%d %H%M%S")
           echo 'TZ-0: '$(date +"%Y/%m/%d %H%M%S")
+          TZ=-9 date +"%Y/%m/%d %H%M%S"
+          TZ=JST-9 date +"%Y/%m/%d %H%M%S"
