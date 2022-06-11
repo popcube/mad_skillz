@@ -105,7 +105,7 @@ jobs:
           git config --global user.name ${{ github.actor }}
           git config --global user.email ${{ secrets.MY_EMAIL }}
           
-          find ./docs/figs/latest/ type -f -delete
+          find ./docs/figs/latest/ -type f -delete
           ls -Rla ./docs/figs
           
       - name: Download figs
