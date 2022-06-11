@@ -127,7 +127,7 @@ jobs:
         run: |
           git add ./docs/. -N \
           && git diff --exit-code \
-          || (git add -A ./docs/. \
+          || (git add -AN ./docs/. \
           && git commit -m "auto commit docs folder" \
           && git push)
           
