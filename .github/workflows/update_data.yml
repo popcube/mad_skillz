@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: songlist
-          path: 20220514_data.csv
+          path: fetched_song_data.csv
 
   job2:
     name: create image

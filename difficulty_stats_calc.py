@@ -28,7 +28,7 @@ def read_time(s):
 # plt.rcParams["font.family"] = "sans-serif"
 # plt.rcParams["font.sans-serif"] = ["Meiryo"]
 
-fname = "20220514_data.csv"
+fname = "fetched_song_data.csv"
 figfoler = "./docs/figs/latest"
 data = []
 csv_key_data = ["No", "default index", "type", "name", "unit", "E", "N", "H", "EX", "M", "EX notes", "M notes", "time", "BPM", "MV", "MV personnel", "release date"]

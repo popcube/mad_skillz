@@ -44,7 +44,7 @@ request("https://pjsekai.com/?aad6ee23b0", (e, res, body) => {
     return acc;
   }, "");
 
-  fs.writeFileSync("20220514_data.csv", resString);
+  fs.writeFileSync("fetched_song_data.csv", resString);
 });
 
 // request("http://www.uec.ac.jp/", (e, response, body) => {
